@@ -1,8 +1,9 @@
 package socketio
 
 import (
-	"github.com/googollee/go-socket.io/parser"
 	"reflect"
+
+	"github.com/googollee/go-socket.io/parser"
 )
 
 // namespace
@@ -13,7 +14,9 @@ const (
 
 // message
 const (
-	clientDisconnectMsg = "client namespace disconnect"
+	clientDisconnectMsg  = "client namespace disconnect"
+	enableEncryptEvent   = "shake"
+	encryptHandlerSuffix = ":crypto"
 )
 
 type readHandler func(c *conn, header parser.Header) error
@@ -21,3 +24,5 @@ type readHandler func(c *conn, header parser.Header) error
 var (
 	defaultHeaderType = []reflect.Type{reflect.TypeOf("")}
 )
+
+type cryptoFlag struct{}

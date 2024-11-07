@@ -37,6 +37,11 @@ func eventPacketHandler(c *conn, event string, header parser.Header) error {
 		return nil
 	}
 
+	// 加密则修改EVENT
+	if c.Context() != nil {
+		event += encryptHandlerSuffix
+	}
+
 	args, err := c.decoder.DecodeArgs(handler.getEventTypes(event))
 	if err != nil {
 		c.onError(header.Namespace, err)
@@ -47,6 +52,11 @@ func eventPacketHandler(c *conn, event string, header parser.Header) error {
 	if err != nil {
 		c.onError(header.Namespace, err)
 		return errHandleDispatch
+	}
+
+	// 设置加密标志
+	if event == enableEncryptEvent {
+		c.SetContext(cryptoFlag{})
 	}
 
 	if len(ret) > 0 {
