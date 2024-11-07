@@ -3,7 +3,7 @@ package socketio
 import (
 	"reflect"
 
-	"github.com/googollee/go-socket.io/parser"
+	"github.com/UnderTreeTech/go-socket.io/parser"
 )
 
 // namespace

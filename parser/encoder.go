@@ -3,9 +3,10 @@ package parser
 import (
 	"bufio"
 	"encoding/json"
-	"github.com/googollee/go-socket.io/engineio/session"
 	"io"
 	"reflect"
+
+	"github.com/UnderTreeTech/go-socket.io/engineio/session"
 )
 
 type FrameWriter interface {
