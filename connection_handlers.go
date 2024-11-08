@@ -38,7 +38,7 @@ func eventPacketHandler(c *conn, event string, header parser.Header) error {
 	}
 
 	// 加密则修改EVENT
-	if c.Context() != nil {
+	if conn.Context() != nil {
 		event += encryptHandlerSuffix
 	}
 
@@ -56,7 +56,7 @@ func eventPacketHandler(c *conn, event string, header parser.Header) error {
 
 	// 设置加密标志
 	if event == enableEncryptEvent {
-		c.SetContext(cryptoFlag{})
+		conn.SetContext(cryptoFlag{})
 	}
 
 	if len(ret) > 0 {
